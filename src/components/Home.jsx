@@ -5,31 +5,46 @@ import SearchBar from './SearchBar';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
+  const [coordinates, setCoordinates] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
   
   useEffect(() => {
     const handleSuccess = async (location) => {
-      setLoading(true);
-
-      const { latitude, longitude } = location.coords;
-
-      try {
-        const data = await fetchWeather(latitude, longitude);
-        setCurrentWeather(data);
-      } catch (error) {
-        console.log("Error", error);
-      }
-      
-      setLoading(false)
+      setCoordinates(location.coords);
     }
-    
 
     const handleError = (error) => {
       console.log("Error:", error);
     }
 
+    // const watchId = navigator.geolocation.watchPosition(handleSuccess, handleError);
+    // return () => {
+    //   navigator.geolocation.clearWatch(watchId)
+    // };
+
     navigator.geolocation.getCurrentPosition(handleSuccess, handleError);
   }, [])
+
+  useEffect(() => {
+      const fetchData = async () => {
+        if(!coordinates){
+          return
+        }
+        
+        setLoading(true);
+        const { latitude, longitude } = coordinates;
+  
+        try {
+          const data = await fetchWeather(latitude, longitude);
+          setCurrentWeather(data);
+        } catch (error) {
+          console.log("Error", error);
+        }
+      }
+
+      fetchData();
+      setLoading(false)
+  }, [coordinates])
   
   return (
     <div>

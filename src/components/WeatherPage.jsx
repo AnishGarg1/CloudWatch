@@ -11,7 +11,7 @@ const WeatherPage = ({lat, lon}) => {
         const fetchData = async () => {
             try {
                 const data = await fetchWeather(lat, lon);
-                setCurrentWeather(data)
+                setCityWeather(data)
             } catch (error) {
                 console.log("Error:", error)
             }
