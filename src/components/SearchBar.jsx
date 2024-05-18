@@ -1,12 +1,17 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FaSearch } from "react-icons/fa"
+import CityWeather from './CityWeather';
+import { useDispatch, useSelector } from 'react-redux';
+import { setShowUserWeather } from '../redux/slices/weatherSlice';
 
 const SearchBar = () => {
   const [loading, setLoading] = useState(false);
   const [cityData, setCityData] = useState([]);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [citySelected, setCitySelected] = useState(false);
+  
+  const { showUserWeather } = useSelector((state) => state.weather);
+  const dispatch = useDispatch();
 
   const [text, setText] = useState("");
 
@@ -36,23 +41,19 @@ const SearchBar = () => {
   }
 
   useEffect(() => {
-    if(!citySelected){
-      fetchCityData(text);
-    }
-    setCitySelected(false); // Reset the citySelected after cityData render
+    fetchCityData(text);
   }, [text])
 
   const handleChange = (value) => {
     setText(value)
     // setSelectedCity(null)
-    setCitySelected(false) // When input changes, reset citySelected
   }
 
   const handleSelectCity = (city) => {
     setSelectedCity(city);
     setCityData([])
-    setText(city.name)
-    setCitySelected(true)
+    setText("")
+    dispatch(setShowUserWeather(false))
   }
 
   return (
@@ -84,18 +85,8 @@ const SearchBar = () => {
         )
       }
       {/* Show Selected City Info */}
-      {selectedCity && (
-        <div className='bg-blue-400'>
-          <p>
-            City: {" "}{selectedCity.name}
-          </p>
-          <p>
-            lat: {" "}{selectedCity.lat}
-          </p>
-          <p>
-            lon: {" "}{selectedCity.lon}
-          </p>
-        </div>
+      {selectedCity && !showUserWeather && (
+          <CityWeather name={selectedCity.name} country={selectedCity.country} lat={selectedCity.lat} lon={selectedCity.lon}/>
       )}
     </div>
   )
