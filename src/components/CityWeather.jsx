@@ -29,7 +29,7 @@ const CityWeather = ({ name, country, lat, lon}) => {
             setLoadingForecast(true);
             
             try {
-            const data = await fetchForecastWeather(lat, lon);
+                const data = await fetchForecastWeather(lat, lon);
                 setForecastedWeather(data.forecast.forecastday);
             } catch (error) {
                 console.log("Error:", error);
