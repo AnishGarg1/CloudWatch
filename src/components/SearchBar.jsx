@@ -55,7 +55,7 @@ const SearchBar = () => {
   }
 
   const handleSelectCity = (city) => {
-    setSelectedCity(city);
+    setSelectedCity(city)
     setCityData([])
     setText("")
     dispatch(setShowUserWeather(false))
