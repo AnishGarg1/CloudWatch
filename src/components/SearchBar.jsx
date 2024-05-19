@@ -24,9 +24,9 @@ const SearchBar = () => {
     setLoading(true);
 
     try {
-      const API_KEY = '445ba119da654dcf83480050241805';
+      const API_KEY = 'pk.672dd60bd8d342502c352b6ac84597d4';
       const response = await axios(
-        `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${text}`
+        `https://api.locationiq.com/v1/autocomplete?key=${API_KEY}&q=${text}`
       )
       const data = response.data;
       setCityData(data);
@@ -41,7 +41,12 @@ const SearchBar = () => {
   }
 
   useEffect(() => {
-    fetchCityData(text);
+    const delayFn = setTimeout(() => {
+      fetchCityData(text);
+    }, 300); // set timeout for 300ms
+
+    return () => clearTimeout(delayFn);
+    // fetchCityData(text);
   }, [text])
 
   const handleChange = (value) => {
@@ -78,7 +83,7 @@ const SearchBar = () => {
                 onClick={() => handleSelectCity(city)}
                 className='bg-amber-200 cursor-pointer hover:bg-green-300 hover:border'
               >
-                {city.name}
+                {city.display_name}
               </div>
             ))}
           </div>
@@ -86,7 +91,7 @@ const SearchBar = () => {
       }
       {/* Show Selected City Info */}
       {selectedCity && !showUserWeather && (
-          <CityWeather name={selectedCity.name} country={selectedCity.country} lat={selectedCity.lat} lon={selectedCity.lon}/>
+          <CityWeather name={selectedCity.display_name} country={selectedCity.country} lat={selectedCity.lat} lon={selectedCity.lon}/>
       )}
     </div>
   )
