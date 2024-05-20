@@ -6,7 +6,7 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen">
+    <div className="flex flex-col justify-center items-center h-screen w-11/12 mx-auto">
       <div className='font-bold text-blue-600'>CloudWatch App</div>
       <Routes>
         <Route path='/' element={<Home/>}/>

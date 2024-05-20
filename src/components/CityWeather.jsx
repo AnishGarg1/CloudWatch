@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import WeatherCard from './WeatherCard';
+import WeatherInfo from './WeatherInfo';
 import { fetchForecastWeather, fetchWeather } from '../utils/geoMap';
-import ForecastWeather from './ForecastWeather';
 
 const CityWeather = ({ name, country, lat, lon}) => {
     const [loading, setLoading] = useState(false);
@@ -30,7 +29,7 @@ const CityWeather = ({ name, country, lat, lon}) => {
             
             try {
                 const data = await fetchForecastWeather(lat, lon);
-                setForecastedWeather(data.forecast.forecastday);
+                setForecastedWeather(data);
             } catch (error) {
                 console.log("Error:", error);
             }
@@ -50,8 +49,7 @@ const CityWeather = ({ name, country, lat, lon}) => {
                 <p>
                     City: {" "}{name},{" "}{country}
                 </p>
-                <WeatherCard weatherData={cityWeather}/>
-                <ForecastWeather forecastWeatherInfo={forecastedWeather}/>
+                <WeatherInfo weatherData={cityWeather} forecastedWeatherData={forecastedWeather}/>
           </div>
         )}
     </div>

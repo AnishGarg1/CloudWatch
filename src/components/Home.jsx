@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { fetchCityInfo, fetchForecastWeather, fetchWeather } from '../utils/geoMap';
-import WeatherCard from './WeatherCard';
+import WeatherInfo from './WeatherInfo';
 import SearchBar from './SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { MdMyLocation } from "react-icons/md";
 import { setShowUserWeather } from '../redux/slices/weatherSlice';
-import ForecastWeather from './ForecastWeather';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -95,7 +94,7 @@ const Home = () => {
       
       try {
         const data = await fetchForecastWeather(latitude, longitude);
-          setForecastedWeather(data.forecast.forecastday);
+          setForecastedWeather(data);
       } catch (error) {
           console.log("Error:", error);
       }
@@ -120,8 +119,7 @@ const Home = () => {
       ) : (
         currentWeather && showUserWeather && forecastedWeather && <div>
           <p>{address.county}, {address.state}, {address.country}</p>
-          <WeatherCard weatherData={currentWeather}/>
-          <ForecastWeather forecastWeatherInfo={forecastedWeather}/>
+          <WeatherInfo weatherData={currentWeather} forecastedWeatherData={forecastedWeather}/>
         </div>)
       }
     </div>
