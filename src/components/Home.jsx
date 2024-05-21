@@ -106,14 +106,17 @@ const Home = () => {
   }, [])
   
   return (
-    <div>
-      <h1>Home Page</h1>
-      <span>
-        <MdMyLocation
-          onClick={() => handleClickLocation()}
-        />
-      </span>
-      <SearchBar/>
+    <div className='border border-l-cyan-200 animated-box rounded-lg px-7 py-5 flex flex-col justify-center items-center'>
+      {/* <h1>Home Page</h1> */}
+      <div className='relative w-full'>
+        <span className='absolute translate-y-5 -translate-x-5'>
+          <MdMyLocation
+            className=''
+            onClick={() => handleClickLocation()}
+          />
+        </span>
+        <SearchBar/>
+      </div>
       {loading || loadingForecast ? (
         <div>Loading...</div>
       ) : (

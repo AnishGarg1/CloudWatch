@@ -37,7 +37,7 @@ const CityWeather = ({ name, country, lat, lon}) => {
             setLoadingForecast(false);
         }
         fetchData();
-    }, [])
+    }, [lat, lon])
 
   return (
     <div>

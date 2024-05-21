@@ -63,18 +63,21 @@ const SearchBar = () => {
 
   return (
     // Serach Bar Container
-    <div>
+    <div className='w-full'>
       <div>
         <FaSearch/>
         <input
           placeholder='Type to search...'
           value={text}
           onChange={(e) => handleChange(e.target.value)}
+          className='w-11/12'
         />
       </div>
       {
         loading ? (
-          <div>Loading...</div>
+          <div className='w-full flex justify-center items-center'>
+            <div className='loader'></div>
+          </div>
         ) : (
           <div className='bg-orange-300'>
             {cityData.map((city, index) => (

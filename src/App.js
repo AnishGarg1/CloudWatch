@@ -6,14 +6,28 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className="flex flex-col justify-center items-center h-screen w-11/12 mx-auto">
-      <div className='font-bold text-blue-600'>CloudWatch App</div>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        {/* <Route path='/city/:cityName' element={<WeatherPage/>}/> */}
-        <Route path='/about' element={<h1>Contact Us</h1>}/>
-        <Route path='*' element={"404 Not Found"}/>
-      </Routes>
+    <div className='flex relative items-center min-h-screen'>
+      <div id='stars'></div>
+      <div id='stars2'></div>
+      <div id='stars3'></div>
+
+      <div className='w-full flex justify-center'>
+        <div className='z-10 flex flex-col gap-10 mb-20 w-8/12 text-white space-y-4'>
+          <div id='title'>
+            <span>
+              CloudWatch App
+            </span>
+          </div>
+
+          {/* <div className='font-bold text-blue-600 md:font-bold'>CloudWatch App</div> */}
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            {/* <Route path='/city/:cityName' element={<WeatherPage/>}/> */}
+            <Route path='/about' element={<h1>Contact Us</h1>}/>
+            <Route path='*' element={"404 Not Found"}/>
+          </Routes>
+        </div>
+      </div>
     </div>
   );
 }
