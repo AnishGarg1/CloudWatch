@@ -24,7 +24,7 @@ const SearchBar = () => {
     setLoading(true);
 
     try {
-      const API_KEY = 'pk.672dd60bd8d342502c352b6ac84597d4';
+      const API_KEY = process.env.REACT_APP_LOCATION_IQ_API_KEY;
       const response = await axios(
         `https://api.locationiq.com/v1/autocomplete?key=${API_KEY}&q=${text}`
       )
