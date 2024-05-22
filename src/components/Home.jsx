@@ -3,8 +3,8 @@ import { fetchCityInfo, fetchForecastWeather, fetchWeather } from '../utils/geoM
 import WeatherInfo from './WeatherInfo';
 import SearchBar from './SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
-import { MdMyLocation } from "react-icons/md";
-import { setShowUserWeather } from '../redux/slices/weatherSlice';
+// import { MdMyLocation } from "react-icons/md";
+// import { setShowUserWeather } from '../redux/slices/weatherSlice';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +13,7 @@ const Home = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const { showUserWeather } = useSelector((state) => state.weather);
   const [address, setAddress] = useState(null);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   
   // Store into localstorage
   const setUserAddress = async (coordinates) => {
