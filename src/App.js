@@ -6,13 +6,13 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className='flex relative items-center min-h-screen'>
-      <div id='stars'></div>
-      <div id='stars2'></div>
-      <div id='stars3'></div>
+    <div className='relative h-screen w-screen'>
+      <div id='stars' className='z-0'></div>
+      <div id='stars2' className='z-0'></div>
+      <div id='stars3' className='z-0 bg-transparent'></div>
 
-      <div className='w-full flex justify-center'>
-        <div className='z-10 flex flex-col gap-10 mb-20 w-8/12 text-white space-y-4'>
+      <div className='z-10 w-full min-h-screen top-[35%] translate-x-[-50%] translate-y-[-50%] left-[50%] flex justify-center mt-11 fixed'>
+        <div className='flex flex-col justify-center items-center gap-8 mb-20 w-8/12 text-white space-y-4'>
           <div id='title'>
             <span>
               CloudWatch App

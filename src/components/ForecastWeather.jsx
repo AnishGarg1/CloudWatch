@@ -8,7 +8,7 @@ const ForecastWeather = ({ forecastWeatherInfo }) => {
         {forecastWeatherInfo.map((info, index) => (
             <div
                 key={index} 
-                className='border border-black max-w-xs rounded-md p-2 bg-slate-400'
+                className='border border-black max-w-xs rounded-md p-2 bg-slate-700 bg-opacity-80'
             >
                 {info.date}{" => "}{info.day.maxtemp_c}
             </div>

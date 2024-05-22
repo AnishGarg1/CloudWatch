@@ -74,10 +74,6 @@ const Home = () => {
       
       fetchData();
     }, [])
-    
-  const handleClickLocation = () => {
-    dispatch(setShowUserWeather(true))
-  }
   
   // Forecast Weather Info
   const [forecastedWeather, setForecastedWeather] = useState(null);
@@ -106,21 +102,16 @@ const Home = () => {
   }, [])
   
   return (
-    <div className='border border-l-cyan-200 animated-box rounded-lg px-7 py-5 flex flex-col justify-center items-center'>
+    <div className='border w-full border-l-cyan-200 animated-box rounded-lg px-7 py-5 flex flex-col justify-center items-center'>
       {/* <h1>Home Page</h1> */}
-      <div className='relative w-full'>
-        <span className='absolute translate-y-5 -translate-x-5'>
-          <MdMyLocation
-            className=''
-            onClick={() => handleClickLocation()}
-          />
-        </span>
-        <SearchBar/>
-      </div>
+      <SearchBar/>
       {loading || loadingForecast ? (
-        <div>Loading...</div>
+        <div>
+          <div className='spinner'></div>
+        </div>
       ) : (
-        currentWeather && showUserWeather && forecastedWeather && <div>
+        currentWeather && showUserWeather && forecastedWeather && 
+        <div className='mt-4'>
           <p>{address.county}, {address.state}, {address.country}</p>
           <WeatherInfo weatherData={currentWeather} forecastedWeatherData={forecastedWeather}/>
         </div>)

@@ -40,12 +40,14 @@ const CityWeather = ({ name, country, lat, lon}) => {
     }, [lat, lon])
 
   return (
-    <div>
+    <div className='mt-4'>
         {loading || loadingForecast ? (
-            <div>Loading...</div>
+            <div>
+                <div className='spinner'></div>
+            </div>
         ) : 
         cityWeather && forecastedWeather && (
-            <div className='bg-blue-400'>
+            <div className=''>
                 <p>
                     City: {" "}{name},{" "}{country}
                 </p>
