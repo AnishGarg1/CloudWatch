@@ -78,7 +78,7 @@ const SearchBar = () => {
         </span>
         <div className='w-full relative flex items-center justify-start'>
           <input
-            placeholder='Type to search...'
+            placeholder='Type to search weather...'
             value={text}
             onChange={(e) => handleChange(e.target.value)}
             className='w-10/12 
