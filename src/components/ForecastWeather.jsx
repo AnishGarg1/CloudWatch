@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 const ForecastWeather = ({ forecastWeatherInfo }) => {
     // console.log("forecast weather:",forecastWeatherInfo)

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { fetchCityInfo, fetchForecastWeather, fetchWeather } from '../utils/geoMap';
 import WeatherInfo from './WeatherInfo';
 import SearchBar from './SearchBar';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 // import { MdMyLocation } from "react-icons/md";
 // import { setShowUserWeather } from '../redux/slices/weatherSlice';
 
