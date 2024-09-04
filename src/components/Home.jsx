@@ -3,13 +3,14 @@ import { fetchCityInfo, fetchForecastWeather, fetchWeather } from '../utils/geoM
 import WeatherInfo from './WeatherInfo';
 import SearchBar from './SearchBar';
 import { useSelector } from 'react-redux';
+import MapContainer from './MapContainer';
 // import { MdMyLocation } from "react-icons/md";
 // import { setShowUserWeather } from '../redux/slices/weatherSlice';
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [loadingForecast, setLoadingForecast] = useState(false);
-  // const [coordinates, setCoordinates] = useState(null);
+  const [coordinates, setCoordinates] = useState(null);
   const [currentWeather, setCurrentWeather] = useState(null);
   const { showUserWeather } = useSelector((state) => state.weather);
   const [address, setAddress] = useState(null);
@@ -28,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     const handleSuccess = async (location) => {
-      // setCoordinates(location.coords);
+      setCoordinates(location.coords);
       setUserAddress(location.coords);
     }
 
@@ -114,6 +115,7 @@ const Home = () => {
         <div className='mt-4'>
           <p>{address.county}, {address.state}, {address.country}</p>
           <WeatherInfo weatherData={currentWeather} forecastedWeatherData={forecastedWeather}/>
+          <MapContainer lat={coordinates?.latitude} lon={coordinates?.longitude}/>
         </div>)
       }
     </div>

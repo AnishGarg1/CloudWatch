@@ -5,6 +5,7 @@ import CityWeather from './CityWeather';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowUserWeather } from '../redux/slices/weatherSlice';
 import { MdMyLocation } from 'react-icons/md';
+import MapContainer from './MapContainer';
 
 const SearchBar = () => {
   const [loading, setLoading] = useState(false);
@@ -113,7 +114,10 @@ const SearchBar = () => {
       </div>
       {/* Show Selected City Info */}
       {selectedCity && !showUserWeather && (
-          <CityWeather name={selectedCity.display_name} country={selectedCity.country} lat={selectedCity.lat} lon={selectedCity.lon}/>
+          <div>
+            <CityWeather name={selectedCity.display_name} country={selectedCity.country} lat={selectedCity.lat} lon={selectedCity.lon}/>
+            <MapContainer lat={selectedCity?.lat} lon={selectedCity?.lon}/>
+          </div>
       )}
     </div>
   )
